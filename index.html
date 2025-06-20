@@ -24,6 +24,20 @@
   <div id="qr-reader" class="mt-6 w-full max-w-md hidden"></div>
   <div id="result" class="mt-4 text-green-600 font-semibold"></div>
 
+  <div id="app">
+    <p>{{ message }}</p>
+    <button @click="reverseMessage">Reverse Message</button>
+  </div>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+      }
+    }
+  </script>
+  <script type="module" src="./dist/app.js"></script>
+
   <script>
   window.addEventListener("DOMContentLoaded", () => {
     const btn = document.getElementById("start-scan");

@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@vue/runtime-core": "^3.5.17",
+    "vue": "^3.5.17"
+  }
+}
