@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scanner QR Code</title>
+  <script src="https://unpkg.com/html5-qrcode@2.3.10/minified/html5-qrcode.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-4">
+
+  <div class="text-center mb-8">
+    <h1 class="text-3xl font-bold mb-4">Bienvenue !</h1>
+    <p class="text-lg">Appuyez sur le bouton pour scanner un QR code</p>
+  </div>
+
+  <button
+    id="start-scan"
+    class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition"
+  >
+    Scanner un QR Code
+  </button>
+
+  <div id="qr-reader" class="mt-6 w-full max-w-md hidden"></div>
+  <div id="result" class="mt-4 text-green-600 font-semibold"></div>
+
+  <script>
+    const btn = document.getElementById("start-scan");
+    const qrReader = document.getElementById("qr-reader");
+    const resultEl = document.getElementById("result");
+
+    btn.addEventListener("click", () => {
+      qrReader.classList.remove("hidden");
+      btn.disabled = true;
+      btn.textContent = "Scan en cours...";
+
+      const html5QrCode = new Html5Qrcode("qr-reader");
+      const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+
+      html5QrCode.start(
+        { facingMode: "environment" },
+        config,
+        (decodedText) => {
+          html5QrCode.stop();
+          resultEl.textContent = "QR Code détecté : " + decodedText;
+          btn.textContent = "Scanner à nouveau";
+          btn.disabled = false;
+        },
+        (error) => {
+          // Erreurs ignorées volontairement
+        }
+      );
+    });
+  </script>
+
+</body>
+</html>
