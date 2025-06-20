@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Scanner QR Code</title>
-  <script src="https://unpkg.com/html5-qrcode@2.3.10/minified/html5-qrcode.min.js"></script>
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-4">
@@ -25,6 +25,7 @@
   <div id="result" class="mt-4 text-green-600 font-semibold"></div>
 
   <script>
+  window.addEventListener("DOMContentLoaded", () => {
     const btn = document.getElementById("start-scan");
     const qrReader = document.getElementById("qr-reader");
     const resultEl = document.getElementById("result");
@@ -47,11 +48,12 @@
           btn.disabled = false;
         },
         (error) => {
-          // Erreurs ignorées volontairement
+          // silencieux
         }
       );
     });
-  </script>
+  });
+</script>
 
 </body>
 </html>
